@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { resetPassword } from "../services/auth";
+import { resetPassword } from "../../services/auth";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 function ResetPassword() {

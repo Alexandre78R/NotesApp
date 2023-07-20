@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sendResetPassword } from "../services/auth";
+import { sendResetPassword } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "npm i && npm --prefix ./frontend i && npm --prefix ./backend i",
+    "setup": "npm i && npm --prefix ./frontend i && npm --prefix ./backend/src i",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\""
   },
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "argon2": "^0.30.3",
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1"
   }
 }

@@ -7,7 +7,7 @@ const argon2 = require("argon2");
 const {sendResetPasswordMail} = require("../../helpers/mailer.js");
 
 const register = async (req, res) => {
-    const { email, password, admin } = req.body;
+    const { username, email, password, role } = req.body;
 
     if (!email || !password) {
       res.status(400).send({ error: "Please specify both email and password" });
@@ -17,7 +17,9 @@ const register = async (req, res) => {
     const dataUser = {
         email : email,
         password : password,
-        role : admin === 1 ? "ROLE_ADMIN" : "ROLE_USER"
+        role : role === "ROLE_ADMIN" ? "ROLE_ADMIN" : "ROLE_USER",
+        username : username,
+        avatar : ""
     }
 
     try {

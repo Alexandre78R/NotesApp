@@ -1,15 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Users from "./pages/Users";
-import Login from "./pages/Login";
-import Logout from "./pages/Logout";
-import Register from "./pages/Register";
-import Forgotpassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
+import "./style.scss";
+import Users from "./pages/Users/Users";
+import Login from "./pages/Users/Login";
+import Logout from "./pages/Users/Logout";
+import Register from "./pages/Users/Register";
+import Forgotpassword from "./pages/Users/ForgotPassword";
+import ResetPassword from "./pages/Users/ResetPassword";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import NavBar from "./components/Navbar/Navbar";
+import NotesView from "./pages/Notes/NotesView";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ function App() {
           <Route exact path="/resetpassword" element={<ResetPassword />} />
           <Route exact path="/users" element={<Users />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/notes" element={<NotesView />} />
         </Routes>
       </div>
     </Router>

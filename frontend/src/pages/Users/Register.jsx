@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { createAccount } from "../services/users";
+import { createAccount } from "../../services/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signin } from "../store/auth";
+import { signin } from "../../store/auth";
 
 function Register() {
   const [register, setRegister] = useState({ email: "", password: "" });
