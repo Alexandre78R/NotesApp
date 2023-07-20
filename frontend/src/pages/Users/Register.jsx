@@ -6,7 +6,11 @@ import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 
 function Register() {
-  const [register, setRegister] = useState({ email: "", password: "" });
+  const [register, setRegister] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -18,7 +22,7 @@ function Register() {
     e.preventDefault();
 
     const { email, password } = register;
-    if (email === "" || password === "") {
+    if (email === "" || password === "" || username === "") {
       return setError("Veuillez remplir tous les champs !"), setMessage(null);
     } else {
       try {
@@ -60,6 +64,20 @@ function Register() {
           placeholder="test@blabla.com"
           value={register.email}
           onChange={(e) => setRegister({ ...register, email: e.target.value })}
+        />
+      </label>
+      <br />
+      <label htmlFor="username">
+        Pseudo:
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Votre pseudo"
+          value={register.username}
+          onChange={(e) =>
+            setRegister({ ...register, username: e.target.value })
+          }
         />
       </label>
       <br />

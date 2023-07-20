@@ -25,10 +25,10 @@ const findAll = () => {
 }
 
 const addOne = (user) => {
-    const { email, password, role } = user;
+    const { username, password, avatar, email, role } = user;
     return db
-        .execute("insert into user (email, password, role) values (?, ?, ?)",
-        [email, password, role])
+        .execute("insert into user (username, password, avatar, email, role) values (?, ?, ?, ?, ?)",
+        [username, password, avatar, email, role])
         .then(([data]) => {
             console.log("data -> ", data)
             return { id: data.insertId, ...user };
@@ -54,8 +54,7 @@ const deleteOne = (id) => {
 
 const updateOne = (user) => {
     return db
-        .execute("update user set email = ?, password = ?, role = ? where id = ?",
-        [user.email, user.password, user.role, user.id])
+        .query("update user set ? where id = ?", [user, id])
         .then(([data]) => {
             return { affectedRows : data.affectedRows, id: data.insertId, ...user };
         })

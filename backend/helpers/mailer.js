@@ -12,10 +12,10 @@ const transporter = mailer.createTransport({
 
 const sendResetPasswordMail = async ({ dest, url }) => {
     const mailOptions = {
-        from: "alexandre.renard98@gmail.com", // this is the address from which the email will be sent
-        to: dest, // this is the address to which the email will be sent
+        from: "alexandre.renard98@gmail.com",
+        to: dest,
         subject: "Réinitialisez votre mot de passe",
-        text: `Utilisez ce lien pour réinitialiser votre mot de passe : ${url}`, // url will be defined later in our controller
+        text: `Utilisez ce lien pour réinitialiser votre mot de passe : ${url}`,
         html: `<p>Utilisez ce lien pour réinitialiser votre mot de passe : <a href=${url}>Réinitialisez votre mot de passe</a>`,
     };
     return transporter.sendMail(mailOptions);

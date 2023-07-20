@@ -19,7 +19,7 @@ const register = async (req, res) => {
         password : password,
         role : role === "ROLE_ADMIN" ? "ROLE_ADMIN" : "ROLE_USER",
         username : username,
-        avatar : ""
+        avatar : `${process.env.BACKEND_URL}/upload/default_user.png`
     }
 
     try {
@@ -34,7 +34,7 @@ const register = async (req, res) => {
         } else {
             console.log("userNew",userNew)
                const token = jwt.sign(
-                    { id: userNew.id, role: userNew.role },
+                    { id: userNew.id, username: userNew.username, role: userNew.role },
                     process.env.JWT_AUTH_SECRET,
                     {
                       expiresIn: "1h",
@@ -49,6 +49,8 @@ const register = async (req, res) => {
                   .send({
                     id : userNew?.role,
                     email : userNew?.email,
+                    username : userNew?.username,
+                    avatar : userNew?.avatar,
                     role : userNew?.role,
                   });
         }
@@ -70,7 +72,7 @@ const login = async (req, res) => {
             });
           } else {
 
-            const { id, email, role } = userLogin[0];
+            const { id, email, username, avatar, role } = userLogin[0];
             const hash = userLogin[0].password;
             
             console.log("userLogin[0]", userLogin[0]);
@@ -79,7 +81,7 @@ const login = async (req, res) => {
             
             if (checkPassword) {
                 const token = jwt.sign(
-                    { id: id, role: role },
+                    { id: id, username:username, role: role },
                     process.env.JWT_AUTH_SECRET,
                     {
                       expiresIn: "1h",
@@ -95,6 +97,8 @@ const login = async (req, res) => {
                     id,
                     email,
                     role,
+                    username,
+                    avatar,
                   });
               } else {
                 res.status(403).send({
