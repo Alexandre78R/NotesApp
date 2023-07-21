@@ -23,6 +23,7 @@ function NavbarApp() {
       await authService.logout();
       dispatch(logout());
       setShowNavbar(false);
+      console.log("auth", auth);
       navigate("/login");
     } catch (error) {
       console.log("error", error);
@@ -75,7 +76,7 @@ function NavbarApp() {
                     onClick={handleSubmit}
                     className="colorHover"
                   >
-                    Disconnect
+                    Déconnexion
                   </buttom>
                 </li>
               </>

@@ -99,7 +99,7 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             exact
             path="/notes"
             element={
@@ -107,7 +107,7 @@ function App() {
                 <NotesView />
               </PrivateRoute>
             }
-          />
+          /> */}
           <Route
             exact
             path="/"

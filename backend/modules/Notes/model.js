@@ -1,20 +1,8 @@
 const db = require("../../config/db");
 
-const findByMail = (email) => {
-    return db
-        .execute("select * from user where email = ?", [email])
-        .then(([data]) => {
-            return data;
-        })
-        .catch((err) =>{
-            console.error("Error ", err)
-            return err;
-        })
-}
-
 const findAll = () => {
     return db
-        .query("select * from user")
+        .query("select * from note")
         .then(([data]) => {
             return data;
         })
@@ -22,56 +10,56 @@ const findAll = () => {
             console.error("Error ", err)
             return err;
         })
-}
+} 
 
-const addOne = (user) => {
-    const { username, password, avatar, email, role } = user;
+const findOne = (id) => {
     return db
-        .execute("insert into user (username, password, avatar, email, role) values (?, ?, ?, ?, ?)",
-        [username, password, avatar, email, role])
+        .execute("select * from note where id = ?", [id])
         .then(([data]) => {
-            console.log("data -> ", data)
-            return { id: data.insertId, ...user };
-        })
-        .catch((err) =>{
-            console.error("err", err)
-            return err;
-        })
-}
-
-const deleteOne = (id) => {
-    return db
-        .execute("delete from user where id = ?", [id])
-        .then(([data]) => {
-            // return data;
-            return { affectedRows : data.affectedRows };
+            return data;
         })
         .catch((err) =>{
             console.error("Error ", err)
             return err;
         })
-}
+} 
 
-const updateOne = (user) => {
+const createNote = (note) => {
+    const { name } = note;
     return db
-        .query("update user set ? where id = ?", [user, id])
+        .execute("insert into note (name) values (?)",
+        [name])
         .then(([data]) => {
-            return { affectedRows : data.affectedRows, id: data.insertId, ...user };
+            return { id: data.insertId, ...note };
         })
         .catch((err) =>{
             console.error("err", err)
             return err;
         })
-}
+} 
 
-const updateOneByMail = async (user, email) => {
-    return db.query("UPDATE user SET ? WHERE email = ?", [user, email])
-}
+const removeNote = (id) => {
+    return db
+        .execute("delete from note where id = ?", [id])
+        .then(([data]) => {
+            return data;
+        })
+        .catch((err) =>{
+            console.error("Error ", err)
+            return err;
+        })
+} 
 
-const getById = async (id) => {
-    const [user] = await db.query("SELECT * FROM user WHERE id = ?", [id]);
-    return user;
-}
+const modifyNote = (note, id) => {
+    return db
+        .query("update note set ? where id = ?", [note, id])
+        .then(([data]) => {
+            return data;
+        })
+        .catch((err) =>{
+            console.error("Error ", err)
+            return err;
+        })
+} 
 
-
-module.exports = { findByMail, findAll, deleteOne, addOne, updateOne, updateOneByMail, getById}
+module.exports = { findAll, findOne, createNote, removeNote, modifyNote };

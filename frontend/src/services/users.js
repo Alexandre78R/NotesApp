@@ -28,5 +28,8 @@ const deleteUtilisateur = (id) => {
     return api.put(`/users/${id}`, data)
   }
 
-export {getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount};
-export default { getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount};
+  const serchNotesByid = () => {
+    return api.put(`/users/note/${id}`, data)
+  }
+export {getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount, serchNotesByid};
+export default { getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount, serchNotesByid};

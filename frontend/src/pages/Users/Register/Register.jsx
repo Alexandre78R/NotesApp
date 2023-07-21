@@ -42,10 +42,25 @@ function Register() {
             "L'adresse e-mail est déjà utilisée par un autre utilisateur."
           );
           setMessage(null);
+        } else if (err.response.status === 422) {
+          const validationErrors = err.response.data.validationErrors;
+          let errorMessage = "Vérifiez les champs suivants : ";
+          const fieldTranslations = {
+            "Username - FORMAT LIMIT": "Pseudo limit (45)",
+            "Email - FORMAT LIMIT": "Email limit (45)",
+            "email - FORMAT": "Email non conforme",
+            password: "Mot de passe, erreur interne",
+          };
+          validationErrors.forEach((error) => {
+            console.log("error", error);
+            const translatedField =
+              fieldTranslations[error.field] || error.field;
+            errorMessage += `${translatedField}, `;
+          });
+          errorMessage = errorMessage.slice(0, -2);
+          setError(errorMessage);
         } else {
-          setError(
-            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
-          );
+          setError("Nous rencontrons un problème");
           setMessage(null);
         }
       }

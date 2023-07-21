@@ -1,15 +1,17 @@
 const { Router } = require("express");
-const { browse, getCurrentUser, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword } = require("./controller");
+const { getAllNotes, getNote, addNote, deleteNote, editNote } = require("./controller");
 
-const { authorization, isAdmin } = require("../../middlewares/auth");
+const { authorization } = require("../../middlewares/auth");
 
-const upload = require("../../middlewares/fileUpload");
+const  { validateNote } =require("./validator");
 
 const router = Router();
 
-router.get("/", authorization, browse);
-router.post("/", resetPassword);
-router.put("/:id", authorization, upload.single("avatar"), edit);
-router.delete('/:id', authorization, deleteUserOne);
+router.get("/",authorization, getAllNotes);
+router.post("/",authorization, validateNote, addNote);
+router.get("/:id",authorization, getNote);
+router.delete("/:id",authorization, deleteNote);
+router.put("/:id", authorization, validateNote, editNote);
+
 
 module.exports = router;
