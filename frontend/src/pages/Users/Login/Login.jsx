@@ -48,7 +48,7 @@ function Login() {
       </label>
       <br />
       <label htmlFor="password" className="login-form-label animated-label">
-        Password:
+        Mot de passe :
         <input
           type="password"
           name="password"
