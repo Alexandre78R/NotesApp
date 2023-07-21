@@ -8,13 +8,8 @@ const upload = require("../../middlewares/fileUpload");
 const router = Router();
 
 router.get("/", authorization, browse);
-router.get("/me", authorization, getCurrentUser);
-router.post("/register", register);
-router.post("/login", login);
-router.post("/sendResetPassword", sendResetPassword);
-router.post("/resetPassword", resetPassword);
-router.get("/logout", authorization, logout);
+router.post("/", resetPassword);
 router.put("/:id", authorization, upload.single("avatar"), edit);
-router.delete('/:id', deleteUserOne);
+router.delete('/:id', authorization, deleteUserOne);
 
 module.exports = router;

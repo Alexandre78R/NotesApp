@@ -1,0 +1,127 @@
+.login-form {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #bcdcdd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  
+  .login-form-label {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+    opacity: 0;
+  }
+  
+  .login-form-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    width: 95%;
+    opacity: 0;
+  }
+  
+  .login-form-input::placeholder {
+    color: #aaa;
+  }
+  
+  .login-form-input:focus {
+    outline: none;
+    border-color: #099c29;
+    box-shadow: 0 0 5px #099c29;
+  }
+  
+  .login-form-submit {
+    cursor: pointer;
+    background-color: #046e1b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 18px;
+    transition: background-color 0.2s ease;
+    opacity: 0;
+  }
+  
+  .login-form-submit:hover {
+    background-color: #099c29;
+  }
+  
+  .login-form-error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0;
+  }
+  
+  /* Additional animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animated-label {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  
+  .animated-input {
+    animation: slideInLeft 0.6s ease forwards;
+  }
+  
+  .animated-submit {
+    animation: fadeInUp 0.6s ease forwards 0.3s;
+  }
+  
+  .animated-error {
+    animation: fadeInUp 0.6s ease forwards 0.6s;
+  }
+  
+  @media (max-width: 1200px) {
+    .login-form {
+      max-width: 700px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login-form {
+      max-width: 100%;
+      padding: 20px;
+      grid-gap: 15px;
+      margin: 50px auto;
+    }
+  
+    .login-form-label,
+    .login-form-input,
+    .login-form-submit {
+      font-size: 16px;
+    }
+  
+    .login-form-input {
+      width: 90%;
+    }
+  }

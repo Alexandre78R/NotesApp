@@ -1,12 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { createAccount } from "../services/users";
+import { createAccount } from "../../../services/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signin } from "../store/auth";
+import { signin } from "../../../store/auth";
 
 function Register() {
-  const [register, setRegister] = useState({ email: "", password: "" });
+  const [register, setRegister] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -17,14 +21,15 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { email, password } = register;
-    if (email === "" || password === "") {
-      return setError("Veuillez remplir tous les champs !"), setMessage(null);
+    const { email, password, username } = register;
+    if (email === "" || password === "" || username === "") {
+      setError("Veuillez remplir tous les champs !");
+      setMessage(null);
     } else {
       try {
         const result = await createAccount(register);
         setError(null);
-        setMessage("Création du compte réussi !");
+        setMessage("Création du compte réussie !");
 
         setTimeout(() => {
           dispatch(signin(result.data));
@@ -33,25 +38,25 @@ function Register() {
         }, 1000);
       } catch (err) {
         if (err.response.status === 400) {
-          setMessage(null);
           setError(
             "L'adresse e-mail est déjà utilisée par un autre utilisateur."
           );
-        } else {
           setMessage(null);
+        } else {
           setError(
             "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
           );
+          setMessage(null);
         }
       }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {error && <p className="p_error_register">{error}</p>}
+    <form className="register-form" onSubmit={handleSubmit}>
+      {error && <p className="register-form-error animated-error">{error}</p>}
       {message && <p>{message}</p>}
-      <label htmlFor="email">
+      <label htmlFor="email" className="register-form-label animated-label">
         Email:
         <input
           type="email"
@@ -60,10 +65,26 @@ function Register() {
           placeholder="test@blabla.com"
           value={register.email}
           onChange={(e) => setRegister({ ...register, email: e.target.value })}
+          className="register-form-input animated-input"
         />
       </label>
       <br />
-      <label htmlFor="password">
+      <label htmlFor="username" className="register-form-label animated-label">
+        Pseudo:
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Votre pseudo"
+          value={register.username}
+          onChange={(e) =>
+            setRegister({ ...register, username: e.target.value })
+          }
+          className="register-form-input animated-input"
+        />
+      </label>
+      <br />
+      <label htmlFor="password" className="register-form-label animated-label">
         Password:
         <input
           type="password"
@@ -74,10 +95,13 @@ function Register() {
           onChange={(e) =>
             setRegister({ ...register, password: e.target.value })
           }
+          className="register-form-input animated-input"
         />
       </label>
       <br />
-      <input type="submit" value="Création de compte" />
+      <button type="submit" className="register-form-submit animated-submit">
+        Validez !
+      </button>
     </form>
   );
 }

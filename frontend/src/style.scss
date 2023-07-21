@@ -1,0 +1,10 @@
+@forward "./components/NoteCard/index";
+@forward "./components/Editor/index";
+@forward "./components/Navbar/index";
+@forward "./pages/Users/Register/index";
+@forward "./pages/Users/Login/index";
+@forward "./pages/Users/ForgotPassword/index";
+
+body {
+    background-color: rgb(240, 240, 239);
+}

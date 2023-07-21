@@ -1,0 +1,35 @@
+.note {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.note-header {
+  text-align: center;
+}
+
+.note-header h1 {
+  margin: 0;
+}
+
+.note-body {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.note-footer {
+  display: flex;
+  align-items: center;
+}
+
+.note-footer img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.note-footer p {
+  margin: 0;
+}
