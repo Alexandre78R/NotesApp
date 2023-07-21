@@ -11,12 +11,12 @@ const { validateUser } = require('./validator');
 
 router.get("/", authorization, isAdmin, browse);
 router.get("/me", authorization, getCurrentUser);
+router.get("/logout", authorization, logout);
 router.get("/:id", authorization, isAdmin, getUser);
 router.post("/register", validateUser, register);
 router.post("/login", login);
 router.post("/sendResetPassword", sendResetPassword);
 router.post("/resetPassword", resetPassword);
-router.get("/logout", authorization, logout);
 router.put("/:id", authorization, isAdmin, upload.single("avatar"), edit);
 router.delete('/:id', authorization, isAdmin, deleteUserOne);
 
