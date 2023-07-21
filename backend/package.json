@@ -22,6 +22,7 @@
     "login-rreact-express": "file:..",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.4.0",
-    "nodemailer": "^6.9.3"
+    "nodemailer": "^6.9.3",
+    "socket.io": "^4.7.1"
   }
 }
