@@ -191,7 +191,7 @@ const migrate = async () => {
 
   for (let i = 0; i < note.length; i++) {
     const { title, text, isPublic } = note[i];
-    await connection.query("insert into notes (title, text, isPublic) values (?, ?, ?)",
+    await connection.query("insert into note (title, text, isPublic) values (?, ?, ?)",
     [title, text, isPublic]);
     await console.log(`Add note : ${title}`);
   }
@@ -318,7 +318,7 @@ const migrate = async () => {
 
   for (let i = 0; i < userNote.length; i++) {
     const { user_id, notes_id, role } = userNote[i];
-    await connection.query("insert into user_has_notes (user_id, notes_id, role) values (?, ?, ?)",
+    await connection.query("insert into user_has_note (user_id, notes_id, role) values (?, ?, ?)",
     [user_id, notes_id, role]);
     await console.log(`Add userNote : ${user_id} ${notes_id}`);
   }
