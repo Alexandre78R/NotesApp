@@ -1,0 +1,53 @@
+.search_bar_admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 90%;
+  }
+  
+  .search_input_admin {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 4px;
+    color : orange;
+    font-size : 1rem;
+  }
+  
+  .search_input_admin:focus {
+    border-color: orange;
+    outline: none;
+  }
+  
+  .btn_add_admin {
+    padding: 0.5rem 1rem;
+    background-color: rgb(15, 110, 31);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    font-size : 1rem;
+  }
+  
+  
+  @media screen and (min-width: 600px) {
+  
+    .search_bar_admin {
+      width: 50%;
+    }
+
+    .search_input_admin {
+      flex-grow: 1;
+      padding: 0.5rem;
+      border: 1px solid white;
+      border-radius: 4px;
+      color : orange;
+      font-size : 1rem;
+    }
+  
+    .btn_add_admin {
+      font-size : 1rem;
+    }
+  }

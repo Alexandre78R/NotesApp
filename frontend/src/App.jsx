@@ -16,6 +16,7 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import NavBar from "./components/Navbar/Navbar";
 import NotesView from "./pages/Notes/NotesView";
+import UserEdit from "./pages/Admin/Users/UserEdit/UserEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,16 @@ function App() {
             element={
               <PrivateRouteAdmin>
                 <Users />
+              </PrivateRouteAdmin>
+            }
+          />
+
+          <Route
+            exact
+            path="/admin/users/:id"
+            element={
+              <PrivateRouteAdmin>
+                <UserEdit />
               </PrivateRouteAdmin>
             }
           />
