@@ -4,6 +4,11 @@
 @forward "./pages/Users/Register/index";
 @forward "./pages/Users/Login/index";
 @forward "./pages/Users/ForgotPassword/index";
+@forward "./components/UserCard/index";
+@forward "./components/SearchBarAdmin/index";
+@forward "./components/Pagination/index";
+@forward "./pages/Admin/Users/UserView/index";
+@forward "./pages/Admin/Users/UserEdit/index";
 
 body {
     background-color: rgb(240, 240, 239);

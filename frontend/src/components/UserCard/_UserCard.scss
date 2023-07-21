@@ -1,0 +1,160 @@
+.card_admin_user {
+    width: 25rem;
+    background-color: gainsboro;
+    padding: 1.25rem;
+    margin: 1rem;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow : 1px 5px 10px -1px rgba(0, 0, 0, 0.25);
+  }
+  
+  .admin_badge_admin_user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    color: white;
+    padding: 0.5rem;
+    font-weight: bold;
+    border-top-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.8rem;
+    font-size: 1.3rem;
+  }
+  
+  .user_badge_admin_user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color:  rgb(36, 138, 233);
+    color: white;
+    padding: 0.5rem;
+    font-weight: bold;
+    border-top-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.8rem;
+    font-size: 1.3rem;
+  }
+  
+  
+  .avatar_container_admin_user {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .avatar_admin_user {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .info_admin_user {
+    text-align: center;
+  }
+
+  .email_admin_user {
+    display: inline-block;
+    margin: 0.2rem;
+    font-size: 1.2rem;
+  }
+  
+  .card_actions_admin_user {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .action_edit_admin_user,
+  .action_delete_admin_user {
+    font-size: 1.2rem;
+    color: gray;
+    margin-right: 0.3rem;
+    cursor: pointer;
+  }
+  
+  .action_edit_admin_user:hover {
+    color: greenyellow;
+  }
+  
+  .action_delete_admin_user:hover {
+    color: red;
+  }
+  
+  .modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .modal_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .modal h2 {
+    margin-top: 0;
+  }
+  
+  .modal_buttons {
+    margin-top: 1.5rem;
+  }
+  
+  .modal_buttons button {
+    padding: 0.5rem 1rem;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+  
+  .modal_buttons button:hover {
+    background-color: #1f6eb2;
+  }
+  
+  .p_error_modal {
+    text-align: center;
+    color: red;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+  
+    .card_admin_user {
+      width: 18rem;
+    }
+  
+    .admin_badge_admin_user {
+      font-size: 1rem;
+    }
+  
+    .user_badge_admin_user {
+      font-size: 1rem;
+    }
+  
+    .name_admin_user {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+  }

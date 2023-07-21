@@ -1,0 +1,40 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Pagination item style */
+  .item {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  /* Active page item style */
+  .item.active {
+    background-color: #d9e6f3;
+    color: #fff;
+  }
+  
+  /* Previous and Next button styles */
+  .item.previous,
+  .item.next {
+    background-color: #f0f0f0;
+  }
+  
+  /* Hover styles for buttons */
+  .item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Focus styles for buttons */
+  .item:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff;
+  }

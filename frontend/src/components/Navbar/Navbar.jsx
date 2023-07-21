@@ -54,15 +54,6 @@ function NavbarApp() {
                     Admin - Users
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/admin/notes"
-                    onClick={handleNavLinkClick}
-                    className="colorHover"
-                  >
-                    Admin - Notes
-                  </Link>
-                </li>
               </>
             ) : (
               ""

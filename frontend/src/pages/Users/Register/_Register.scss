@@ -1,127 +1,136 @@
-.register-form {
-    max-width: 900px;
-    margin: 100px auto;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #bcdcdd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px; 
-  }
-  
-  .register-form-label {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #333;
-    opacity: 0;
-  }
-  
-  .register-form-input {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s ease;
-    width: 95%; 
-    opacity: 0;
-  }
-  
-  .register-form-input::placeholder {
-    color: #aaa;
-  }
-  
-  .register-form-input:focus {
-    outline: none;
-    border-color: #099c29;
-    box-shadow: 0 0 5px #099c29;
-  }
-  
-  .register-form-submit {
-    cursor: pointer;
-    background-color: #046e1b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    font-size: 18px;
-    transition: background-color 0.2s ease;
-    opacity: 0;
-  }
-  
-  .register-form-submit:hover {
-    background-color: #099c29;
-  }
-  
-  .register-form-error {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0;
-  }
-  
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.useredit-box {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #bcdcdd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.useredit-title2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.useredit-button-admin label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.useredit-input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+  width: 95%;
+  outline: none;
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.useredit-input::placeholder {
+  color: #aaa;
+}
+
+.useredit-input:focus {
+  border-color: #099c29;
+  box-shadow: 0 0 5px #099c29;
+}
+
+#select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+  width: 95%;
+  outline: none;
+  background: #fff;
+}
+
+.useredit-button-admin {
+  display: flex;
+  justify-content: center;
+}
+
+.useredit-connexion {
+  cursor: pointer;
+  background-color: #046e1b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+  font-size: 18px;
+  transition: background-color 0.2s ease;
+  opacity: 0;
+}
+
+.useredit-connexion:hover {
+  background-color: #099c29;
+}
+
+.useredit-p-error {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .animated-label {
-    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  
-  .animated-input {
-    animation: slideInLeft 0.6s ease forwards;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .animated-submit {
-    animation: fadeInUp 0.6s ease forwards 0.3s;
+}
+
+@media (max-width: 1200px) {
+  .useredit-box {
+    max-width: 700px;
   }
-  
-  .animated-error {
-    animation: fadeInUp 0.6s ease forwards 0.6s;
+}
+
+@media (max-width: 768px) {
+  .useredit-box {
+    max-width: 100%;
+    padding: 20px;
+    grid-gap: 15px;
+    margin: 50px auto;
   }
-  
-  @media (max-width: 1200px) {
-    .register-form {
-      max-width: 700px;
-    }
+
+  .useredit-title2,
+  .useredit-button-admin label,
+  #select {
+    font-size: 16px;
   }
-  
-  @media (max-width: 768px) {
-    .register-form {
-      max-width: 100%;
-      padding: 20px;
-      grid-gap: 15px;
-      margin: 50px auto;
-    }
-  
-    .register-form-label,
-    .register-form-input,
-    .register-form-submit {
-      font-size: 16px;
-    }
-  
-    .register-form-input {
-      width: 90%;
-    }
+
+  .useredit-input {
+    width: 90%;
   }
+}

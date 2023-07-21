@@ -16,5 +16,17 @@ const updateAvatar = (form) => {
     return api.post("/users/updateAvatar", form);
 }
 
-export {getAllUsers, getCurrentUser, updateAvatar, createAccount};
-export default { getAllUsers, getCurrentUser, updateAvatar, createAccount};
+const deleteUtilisateur = (id) => {
+    return api.delete(`/users/${id}`)
+  }
+  
+  const getUser = (id)  => {
+    return api.get(`/users/${id}`)
+  }
+  
+  const modifyAccount = (data, id) => {
+    return api.put(`/users/${id}`, data)
+  }
+
+export {getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount};
+export default { getAllUsers, getCurrentUser, updateAvatar, createAccount, deleteUtilisateur, getUser, modifyAccount};
