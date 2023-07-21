@@ -1,13 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import Users from "./pages/Users/Users";
-import Login from "./pages/Users/Login";
-import Logout from "./pages/Users/Logout";
-import Register from "./pages/Users/Register";
-import Forgotpassword from "./pages/Users/ForgotPassword";
-import ResetPassword from "./pages/Users/ResetPassword";
+import Login from "./pages/Users/Login/Login";
+import Register from "./pages/Users/Register/Register";
+import Forgotpassword from "./pages/Users/ForgotPassword/ForgotPassword";
+import ResetPassword from "./pages/Users/ResetPassword/ResetPassword";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import NavBar from "./components/Navbar/Navbar";
@@ -38,13 +42,69 @@ function App() {
       <div className="app">
         <NavBar />
         <Routes>
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/forgotpassword" element={<Forgotpassword />} />
-          <Route exact path="/resetpassword" element={<ResetPassword />} />
-          <Route exact path="/users" element={<Users />} />
-          <Route exact path="/logout" element={<Logout />} />
-          <Route exact path="/notes" element={<NotesView />} />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/forgotpassword"
+            element={
+              <PublicRoute>
+                <Forgotpassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/resetpassword"
+            element={
+              <PublicRoute>
+                <ResetPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/users"
+            element={
+              <PrivateRoute>
+                <Users />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/notes"
+            element={
+              <PrivateRoute>
+                <NotesView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <PrivateRoute>
+                <NotesView />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>
@@ -53,29 +113,29 @@ function App() {
   );
 }
 
-const admins = [
-  0, //  => User
-  1, //  => Admin
-];
+const roles = ["ROLE_USER", "ROLE_ADMIN"];
 
-const PrivateRoute = ({ children, admin = 0 }) => {
+const PrivateRoute = ({ children, role = "ROLE_USER" }) => {
   const auth = useSelector((state) => state.auth);
   if (auth.isLogged) {
+    console.log("toto");
     if (
-      auth.user?.admin === admin ||
-      admins.indexOf(auth.user?.admin) >= admins.indexOf(admin)
+      auth.user?.role === role ||
+      roles.indexOf(auth.user?.role) >= roles.indexOf(role)
     ) {
+      console.log("eee");
       return children;
     }
+    console.log("deddf");
     return <Navigate to="/" />;
   }
   return <Navigate to="/login" />;
 };
 
-const PrivateRouteAdmin = ({ children, admin = 1 }) => {
+const PrivateRouteAdmin = ({ children, role = "ROLE_ADMIN" }) => {
   const auth = useSelector((state) => state.auth);
   if (auth.isLogged) {
-    if (auth.user?.admin === admin) {
+    if (auth.user?.role === role) {
       return children;
     }
     return <Navigate to="/" />;
