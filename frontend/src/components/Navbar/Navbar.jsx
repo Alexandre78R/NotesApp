@@ -76,7 +76,7 @@ function NavbarApp() {
                     onClick={handleSubmit}
                     className="colorHover"
                   >
-                    Disconnect
+                    Déconnexion
                   </buttom>
                 </li>
               </>

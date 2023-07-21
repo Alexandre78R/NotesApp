@@ -41,9 +41,12 @@ function ResetPassword() {
   return (
     <>
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="password">
-          Password:
+      <form className="forgot-password-form" onSubmit={handleSubmit}>
+        <label
+          className="forgot-password-form-label animated-label"
+          htmlFor="password"
+        >
+          Mot de passe:
           <input
             type="password"
             name="password"
@@ -51,10 +54,14 @@ function ResetPassword() {
             placeholder="***********"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="forgot-password-form-input animated-input"
           />
         </label>
-        <label htmlFor="password">
-          Check PassWord:
+        <label
+          className="forgot-password-form-label animated-label"
+          htmlFor="password"
+        >
+          Vérification du Mot de Passe:
           <input
             type="password"
             name="password"
@@ -62,12 +69,14 @@ function ResetPassword() {
             placeholder="***********"
             value={checkPassword}
             onChange={(e) => setCheckPassword(e.target.value)}
+            className="forgot-password-form-input animated-input"
           />
         </label>
         <input
           type="submit"
           value="Reinitialiser mon mot de passe"
           setValue=""
+          className="forgot-password-form-submit animated-submit"
         />
       </form>
     </>
