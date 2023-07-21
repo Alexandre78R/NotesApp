@@ -61,5 +61,4 @@ const validateUserPut = (req, res, next) => {
     }
 }
 
-
 module.exports = { validateUserPost, validateUserPut };
