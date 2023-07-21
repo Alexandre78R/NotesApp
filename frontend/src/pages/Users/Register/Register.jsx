@@ -85,7 +85,7 @@ function Register() {
       </label>
       <br />
       <label htmlFor="password" className="register-form-label animated-label">
-        Password:
+        Mot de passe :
         <input
           type="password"
           name="password"

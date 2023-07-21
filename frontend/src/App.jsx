@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import Users from "./pages/Users/Users";
+import Users from "./pages/Admin/Users/UserView/UserView";
 import Login from "./pages/Users/Login/Login";
 import Register from "./pages/Users/Register/Register";
 import Forgotpassword from "./pages/Users/ForgotPassword/ForgotPassword";
@@ -80,13 +80,14 @@ function App() {
           />
           <Route
             exact
-            path="/users"
+            path="/admin/users"
             element={
-              <PrivateRoute>
+              <PrivateRouteAdmin>
                 <Users />
-              </PrivateRoute>
+              </PrivateRouteAdmin>
             }
           />
+
           <Route
             exact
             path="/notes"
