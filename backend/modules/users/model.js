@@ -73,5 +73,10 @@ const getById = async (id) => {
     return user;
 }
 
+const getNotesByUserID = async (id) => {
+    const [user] = await db.query("select n.title, n.text, u.*, uhn.role as edit from user as u join user_has_note as  uhn ON u.id = uhn.user_id join note n ON uhn.notes_id = n.id where u.id = ?", [id]);
+    return user;
+}
 
-module.exports = { findByMail, findAll, deleteOne, addOne, updateOneByMail, getById, modifyUser}
+
+module.exports = { findByMail, findAll, deleteOne, addOne, updateOneByMail, getById, modifyUser, getNotesByUserID}

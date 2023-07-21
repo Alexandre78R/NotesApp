@@ -1,4 +1,4 @@
-const { findByMail, findAll, getById, deleteOne, addOne, updateOneByMail, findOne, modifyUser} = require("./model"); 
+const { findByMail, findAll, getById, deleteOne, addOne, updateOneByMail, findOne, modifyUser, getNotesByUserID} = require("./model"); 
 
 const jwt = require("jsonwebtoken");
 
@@ -137,29 +137,6 @@ const logout = (req, res) => {
     return res.clearCookie("access_token").sendStatus(200);
 }
 
-// const edit = async (req, res) => {
-//     const user = req.body;
-
-//     user.id = parseInt(req.params.id, 10);
-
-//     try {
-
-        // const hash = await argon2.hash(user.password);
-        // user.password = hash;
-
-//         const userEdit = await updateOne(user);
-//         const { affectedRows, id, email, role } = userEdit;
-//         if (affectedRows === 1) {
-//             res.status(200).json({id, email, role})
-//         } else {
-//             res.status(404).json({ message : "No user found"})
-//         }
-//     } catch (err) {
-//         console.log('Error', err)
-//         res.status(500).json({error : err.message});
-//     }
-// };
-
 const edit = async  (req, res) => {
     const id = req.params.id;
 
@@ -252,6 +229,17 @@ const getUser = async (req, res) => {
     }
 }
 
+const getListNotesByUserID = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const dataListNotesByUserID = await getNotesByUserID(id);
+        res.status(201).json(dataListNotesByUserID)
+    } catch (err) {
+        console.log("err", err)
+        res.status(500).json({error : err.message});
+    }
+}
 
 
-module.exports = { browse, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword, getCurrentUser, getUser};
+
+module.exports = { browse, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword, getCurrentUser, getUser, getListNotesByUserID};

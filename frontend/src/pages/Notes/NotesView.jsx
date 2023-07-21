@@ -6,7 +6,7 @@ function NotesView() {
   return (
     <div>
       <NoteCard />
-      <Editor />
+      {/* <Editor /> */}
     </div>
   );
 }
