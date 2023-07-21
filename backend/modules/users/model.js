@@ -52,17 +52,17 @@ const deleteOne = (id) => {
         })
 }
 
-const updateOne = (user) => {
+const modifyUser = (user, id) => {
     return db
         .query("update user set ? where id = ?", [user, id])
         .then(([data]) => {
-            return { affectedRows : data.affectedRows, id: data.insertId, ...user };
+            return data;
         })
         .catch((err) =>{
-            console.error("err", err)
+            console.error("Error ", err)
             return err;
         })
-}
+} 
 
 const updateOneByMail = async (user, email) => {
     return db.query("UPDATE user SET ? WHERE email = ?", [user, email])
@@ -74,4 +74,4 @@ const getById = async (id) => {
 }
 
 
-module.exports = { findByMail, findAll, deleteOne, addOne, updateOne, updateOneByMail, getById}
+module.exports = { findByMail, findAll, deleteOne, addOne, updateOneByMail, getById, modifyUser}

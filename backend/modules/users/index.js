@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { browse, getCurrentUser, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword } = require("./controller");
+const { browse, getCurrentUser, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword, getUser } = require("./controller");
 
 const { authorization, isAdmin } = require("../../middlewares/auth");
 
@@ -7,14 +7,17 @@ const upload = require("../../middlewares/fileUpload");
 
 const router = Router();
 
-router.get("/", authorization, browse);
+const { validateUser } = require('./validator');
+
+router.get("/", authorization, isAdmin, browse);
 router.get("/me", authorization, getCurrentUser);
-router.post("/register", register);
+router.get("/:id", authorization, isAdmin, getUser);
+router.post("/register", validateUser, register);
 router.post("/login", login);
 router.post("/sendResetPassword", sendResetPassword);
 router.post("/resetPassword", resetPassword);
 router.get("/logout", authorization, logout);
-router.put("/:id", authorization, upload.single("avatar"), edit);
-router.delete('/:id', deleteUserOne);
+router.put("/:id", authorization, isAdmin, upload.single("avatar"), edit);
+router.delete('/:id', authorization, isAdmin, deleteUserOne);
 
 module.exports = router;

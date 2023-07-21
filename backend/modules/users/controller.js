@@ -1,4 +1,4 @@
-const { findByMail, findAll, getById, deleteOne, addOne, updateOne, updateOneByMail} = require("./model"); 
+const { findByMail, findAll, getById, deleteOne, addOne, updateOneByMail, findOne, modifyUser} = require("./model"); 
 
 const jwt = require("jsonwebtoken");
 
@@ -122,6 +122,8 @@ const browse = async (req, res) => {
                 id: user.id,
                 email: user.email,
                 role: user.role,
+                username: user.username,
+                avatar: user.avatar,
               };
             })
         );
@@ -135,28 +137,57 @@ const logout = (req, res) => {
     return res.clearCookie("access_token").sendStatus(200);
 }
 
-const edit = async (req, res) => {
-    const user = req.body;
+// const edit = async (req, res) => {
+//     const user = req.body;
 
-    user.id = parseInt(req.params.id, 10);
+//     user.id = parseInt(req.params.id, 10);
+
+//     try {
+
+        // const hash = await argon2.hash(user.password);
+        // user.password = hash;
+
+//         const userEdit = await updateOne(user);
+//         const { affectedRows, id, email, role } = userEdit;
+//         if (affectedRows === 1) {
+//             res.status(200).json({id, email, role})
+//         } else {
+//             res.status(404).json({ message : "No user found"})
+//         }
+//     } catch (err) {
+//         console.log('Error', err)
+//         res.status(500).json({error : err.message});
+//     }
+// };
+
+const edit = async  (req, res) => {
+    const id = req.params.id;
+
+    const user = req.body;
 
     try {
 
-        const hash = await argon2.hash(user.password);
-        user.password = hash;
+        if (req.file) {
+            const uploadedFilePath = await req.protocol + "://" + req.get("host") + "/upload/user/" + req.file.filename;
+            user.avatar = await uploadedFilePath;
+        }
 
-        const userEdit = await updateOne(user);
-        const { affectedRows, id, email, role } = userEdit;
-        if (affectedRows === 1) {
-            res.status(200).json({id, email, role})
+        if (user.password) {
+            const hash = await argon2.hash(user.password);
+            user.password = hash;
+        }
+
+        const dataEditUser = await modifyUser(user, id);
+        if (dataEditUser.affectedRows === 1) {
+            res.json({ id, ...user})
         } else {
             res.status(404).json({ message : "No user found"})
         }
     } catch (err) {
-        console.log('Error', err)
+        console.log("err", err)
         res.status(500).json({error : err.message});
     }
-};
+}
 
 const deleteUserOne  = async (req, res) => {
     try {
@@ -210,6 +241,17 @@ const getCurrentUser = async (req, res, next) => {
     }
 }
 
+const getUser = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const dataGetUser = await getById(id);
+        res.status(201).json(dataGetUser)
+    } catch (err) {
+        console.log("err", err)
+        res.status(500).json({error : err.message});
+    }
+}
 
 
-module.exports = { browse, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword, getCurrentUser};
+
+module.exports = { browse, register, login, logout, edit, deleteUserOne, sendResetPassword, resetPassword, getCurrentUser, getUser};
